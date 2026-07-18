@@ -1,0 +1,12 @@
+{
+  "name": "ask-her-out-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cute interactive ask-her-out site with optional local response logging",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

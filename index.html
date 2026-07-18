@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Will you go out with me? sathu sujata princess 💖</title>
+
+<!-- ======================================================
+     ✨ CUSTOMIZE HERE — the only line you need to change ✨
+     ====================================================== -->
+<script>
+  const HER_NAME = "lady sujata"; // 👈 change this to her name, that's it!
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --blush:        #ffe9f0;
+    --blush-deep:    #ffd3e2;
+    --rose:          #ff6f9c;
+    --rose-deep:     #ff4d85;
+    --plum:          #5c3346;
+    --plum-soft:     #8a5a71;
+    --cream:         #fffaf9;
+    --gold:          #ffcf8c;
+    --shadow-rose:   rgba(255, 111, 156, 0.35);
+  }
+
+  *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body{
+    margin:0; padding:0; height:100%;
+    overflow-x:hidden;
+  }
+
+  body{
+    font-family: 'Quicksand', sans-serif;
+    background: radial-gradient(circle at 20% 0%, var(--blush) 0%, var(--cream) 55%, #fff 100%);
+    color: var(--plum);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+
+  h1, h2, .display{
+    font-family: 'Fredoka', sans-serif;
+  }
+
+  /* ---------- floating hearts background ---------- */
+  #heartField{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+  }
+  .bg-heart{
+    position:absolute;
+    bottom:-10%;
+    font-size: 22px;
+    opacity: 0.55;
+    animation: floatUp linear infinite;
+    filter: drop-shadow(0 2px 4px var(--shadow-rose));
+    will-change: transform;
+  }
+  @keyframes floatUp{
+    0%{ transform: translateY(0) translateX(0) rotate(0deg); opacity:0; }
+    10%{ opacity:0.6; }
+    90%{ opacity:0.5; }
+    100%{ transform: translateY(-115vh) translateX(var(--drift,20px)) rotate(360deg); opacity:0; }
+  }
+
+  /* ---------- app shell / screens ---------- */
+  .stage{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width: 460px;
+    min-height: 100vh;
+    padding: 32px 22px 40px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .screen{
+    width:100%;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    animation: fadeIn 0.9s ease forwards;
+  }
+  .screen.active{ display:flex; }
+
+  @keyframes fadeIn{
+    from{ opacity:0; transform: translateY(18px) scale(0.98); }
+    to{ opacity:1; transform: translateY(0) scale(1); }
+  }
+
+  /* ---------- welcome screen ---------- */
+  .heart-badge{
+    font-size: 58px;
+    margin-bottom: 6px;
+    animation: pulseHeart 1.6s ease-in-out infinite;
+    filter: drop-shadow(0 6px 14px var(--shadow-rose));
+  }
+  @keyframes pulseHeart{
+    0%,100%{ transform: scale(1); }
+    50%{ transform: scale(1.14); }
+  }
+
+  .greeting{
+    font-size: clamp(28px, 8vw, 38px);
+    font-weight:600;
+    margin: 6px 0 2px;
+    color: var(--rose-deep);
+  }
+
+  .question{
+    font-size: clamp(19px, 5.5vw, 23px);
+    font-weight:500;
+    color: var(--plum-soft);
+    margin: 10px 0 34px;
+    line-height:1.5;
+  }
+
+  .subtle{
+    font-size:14px;
+    color: var(--plum-soft);
+    opacity:0.75;
+    margin-top: 26px;
+  }
+
+  /* ---------- buttons ---------- */
+  .btn-row{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    width:100%;
+    min-height: 130px;
+  }
+
+  .btn{
+    font-family:'Fredoka', sans-serif;
+    font-size:18px;
+    font-weight:600;
+    padding: 16px 34px;
+    border:none;
+    border-radius: 999px;
+    cursor:pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    -webkit-user-select:none; user-select:none;
+  }
+
+  .btn-yes{
+    background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+    color:#fff;
+    box-shadow: 0 10px 24px var(--shadow-rose);
+  }
+  .btn-yes:active{ transform: scale(0.94); }
+  .btn-yes:disabled{
+    opacity:0.45;
+    cursor:not-allowed;
+    box-shadow:none;
+  }
+  .btn-yes:disabled:active{ transform:none; }
+  .btn-yes.grow{
+    animation: growYes 0.35s ease forwards;
+  }
+
+  .btn-no{
+    background:#fff;
+    color: var(--plum-soft);
+    border: 2px solid var(--blush-deep);
+    position: relative;
+    left:0; top:0;
+  }
+  .btn-no.roaming{
+    position:fixed;
+    z-index: 50;
+    transition: left 0.28s cubic-bezier(.34,1.56,.64,1), top 0.28s cubic-bezier(.34,1.56,.64,1), transform 0.28s ease;
+  }
+
+  @keyframes growYes{
+    0%{ transform: scale(1); }
+    60%{ transform: scale(1.18); }
+    100%{ transform: scale(1.08); }
+  }
+
+  .nudge{
+    font-size: 13px;
+    color: var(--rose-deep);
+    margin-top: 18px;
+    min-height: 18px;
+    font-weight:600;
+    opacity:0.9;
+  }
+
+  /* ---------- celebration screen ---------- */
+  .celebrate-emoji{
+    font-size: 64px;
+    animation: bounceIn 0.7s ease;
+  }
+  @keyframes bounceIn{
+    0%{ transform: scale(0); opacity:0; }
+    60%{ transform: scale(1.2); opacity:1; }
+    100%{ transform: scale(1); }
+  }
+
+  .celebrate-title{
+    font-size: clamp(24px, 7vw, 30px);
+    font-weight:700;
+    color: var(--rose-deep);
+    margin: 12px 0 6px;
+  }
+  .celebrate-sub{
+    color: var(--plum-soft);
+    margin-bottom: 30px;
+  }
+
+  /* ---------- food picker ---------- */
+  .food-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width:100%;
+    margin-bottom: 24px;
+  }
+  .food-chip{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    background:#fff;
+    border: 2px solid var(--blush-deep);
+    border-radius: 18px;
+    padding: 16px 10px;
+    cursor:pointer;
+    font-family:'Quicksand', sans-serif;
+    font-size:14px;
+    font-weight:700;
+    color: var(--plum-soft);
+    transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    -webkit-user-select:none; user-select:none;
+  }
+  .food-chip .food-emoji{
+    font-size: 30px;
+  }
+  .food-chip:active{ transform: scale(0.95); }
+  .food-chip.selected{
+    background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+    border-color: var(--rose-deep);
+    color:#fff;
+    box-shadow: 0 8px 18px var(--shadow-rose);
+  }
+  .food-chip.selected::after{
+    content: "✓ selected";
+    font-size: 11px;
+    font-weight:700;
+    opacity:0.9;
+  }
+  .food-hint{
+    font-size:13px;
+    color: var(--plum-soft);
+    opacity:0.8;
+    margin: -12px 0 20px;
+  }
+
+  /* ---------- scheduling card ---------- */
+  .card{
+    background:#fff;
+    border-radius: 24px;
+    padding: 26px 22px;
+    width:100%;
+    box-shadow: 0 14px 40px rgba(92, 51, 70, 0.12);
+    border: 1px solid var(--blush-deep);
+  }
+
+  .field{
+    text-align:left;
+    margin-bottom: 18px;
+  }
+  .field label{
+    display:block;
+    font-size: 13px;
+    font-weight:700;
+    color: var(--plum-soft);
+    margin-bottom: 6px;
+    letter-spacing:0.03em;
+    text-transform: uppercase;
+  }
+  .field input{
+    width:100%;
+    font-family:'Quicksand', sans-serif;
+    font-size:16px;
+    font-weight:600;
+    color: var(--plum);
+    padding: 13px 14px;
+    border-radius: 14px;
+    border: 2px solid var(--blush-deep);
+    background: var(--blush);
+    outline:none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .field input:focus{
+    border-color: var(--rose);
+    background:#fff;
+  }
+
+  .btn-confirm{
+    font-family:'Fredoka', sans-serif;
+    width:100%;
+    font-size:17px;
+    font-weight:600;
+    padding: 15px;
+    border:none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+    color:#fff;
+    cursor:pointer;
+    box-shadow: 0 10px 22px var(--shadow-rose);
+    transition: transform 0.15s ease, opacity 0.2s ease;
+    margin-top:6px;
+  }
+  .btn-confirm:disabled{
+    opacity:0.45;
+    cursor:not-allowed;
+    box-shadow:none;
+  }
+  .btn-confirm:not(:disabled):active{ transform: scale(0.97); }
+
+  /* ---------- photo upload ---------- */
+  .photo-frame{
+    width: 118px;
+    height: 118px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blush), var(--blush-deep));
+    border: 3px solid #fff;
+    box-shadow: 0 8px 22px var(--shadow-rose);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    margin: 0 auto 12px;
+    position:relative;
+  }
+  .photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .photo-frame .photo-placeholder{
+    font-size: 40px;
+    opacity:0.65;
+  }
+  .photo-upload-btn{
+    font-family:'Quicksand', sans-serif;
+    font-size:13px;
+    font-weight:700;
+    color: var(--rose-deep);
+    background: #fff;
+    border: 2px solid var(--blush-deep);
+    border-radius: 999px;
+    padding: 8px 18px;
+    cursor:pointer;
+    margin-bottom: 22px;
+    transition: transform 0.15s ease, border-color 0.2s ease;
+  }
+  .photo-upload-btn:active{ transform: scale(0.95); }
+  .photo-upload-btn.has-photo{
+    border-color: var(--rose);
+    color: var(--rose);
+  }
+
+  /* ---------- mood check screen ---------- */
+  .mood-row{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:100%;
+    margin: 6px 0 24px;
+  }
+  .mood-chip{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-family:'Quicksand', sans-serif;
+    font-size:16px;
+    font-weight:700;
+    color: var(--plum-soft);
+    background:#fff;
+    border: 2px solid var(--blush-deep);
+    border-radius: 16px;
+    padding: 15px;
+    cursor:pointer;
+    transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    -webkit-user-select:none; user-select:none;
+  }
+  .mood-chip:active{ transform: scale(0.97); }
+  .mood-chip.selected{
+    background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+    border-color: var(--rose-deep);
+    color:#fff;
+    box-shadow: 0 8px 18px var(--shadow-rose);
+  }
+  .mood-reply{
+    font-size: 14px;
+    font-weight:600;
+    color: var(--rose-deep);
+    min-height: 20px;
+    margin-bottom: 18px;
+  }
+
+  /* ---------- final screen ---------- */
+  .final-heart{
+    font-size: 60px;
+    animation: pulseHeart 1.8s ease-in-out infinite;
+  }
+  .final-title{
+    font-size: clamp(24px, 7vw, 30px);
+    font-weight:700;
+    color: var(--rose-deep);
+    margin: 14px 0 10px;
+    line-height:1.4;
+  }
+  .final-detail{
+    background:#fff;
+    border: 1px solid var(--blush-deep);
+    border-radius: 18px;
+    padding: 16px 20px;
+    font-weight:600;
+    color: var(--plum-soft);
+    margin-top: 8px;
+    box-shadow: 0 10px 24px rgba(92,51,70,0.08);
+  }
+
+  /* ---------- confetti ---------- */
+  #confettiField{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index: 40;
+    overflow:hidden;
+  }
+  .confetti-piece{
+    position:absolute;
+    top:-5%;
+    border-radius: 3px;
+    animation: confettiFall linear forwards;
+  }
+  @keyframes confettiFall{
+    0%{ transform: translateY(0) rotate(0deg); opacity:1; }
+    100%{ transform: translateY(105vh) rotate(720deg); opacity:0.9; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .bg-heart, .heart-badge, .celebrate-emoji, .final-heart, .confetti-piece{
+      animation: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="heartField"></div>
+<div id="confettiField"></div>
+
+<div class="stage">
+
+  <!-- ===================== SCREEN 0: MOOD + PHOTO ===================== -->
+  <section class="screen active" id="screen-mood">
+    <div class="photo-frame" id="photoFrame">
+      <span class="photo-placeholder" id="photoPlaceholder" style="display:none;">📸</span>
+      <img id="photoPreview" src="sujata.jpeg" alt="" />
+    </div>
+
+
+
+    <h1 class="greeting" id="greetingText">Hi, there 💖</h1>
+    <p class="question">Kasto xa mode  aajaa? lady princess 🤔</p>
+
+    <div class="mood-row" id="moodRow">
+      <button type="button" class="mood-chip" data-mood="All right">All right 🙂</button>
+      <button type="button" class="mood-chip" data-mood="Not bad">Not bad 😌</button>
+      <button type="button" class="mood-chip" data-mood="Bad">Bad 😔</button>
+    </div>
+    <p class="mood-reply" id="moodReply"></p>
+    <button class="btn btn-yes" id="moodContinueBtn" disabled>Continue →</button>
+  </section>
+
+  <!-- ===================== SCREEN 1: WELCOME ===================== -->
+  <section class="screen" id="screen-welcome">
+    <div class="heart-badge">💖</div>
+    <p class="question">Would you like to go out with me?  like lakeside,nirmalpokhari,total 7 lake🥹</p>
+
+    <div class="btn-row" id="btnRow">
+      <button class="btn btn-yes" id="yesBtn">Yes 💖</button>
+      <button class="btn btn-no" id="noBtn">No 😅</button>
+    </div>
+    <p class="nudge" id="nudgeText"></p>
+  </section>
+
+  <!-- ===================== SCREEN 2: CELEBRATION ===================== -->
+  <section class="screen" id="screen-celebrate">
+    <div class="celebrate-emoji">🎉💕🎉</div>
+    <h2 class="celebrate-title">Yesss! wow ava hamro best day Best day ever!</h2>
+    <p class="celebrate-sub">Let's find a time that works for you.</p>
+    <button class="btn btn-yes" id="continueBtn" style="margin-top:6px;">Continue →</button>
+  </section>
+
+  <!-- ===================== SCREEN 2.5: FOOD ===================== -->
+  <section class="screen" id="screen-food">
+    <div class="heart-badge" style="font-size:44px;">🍽️</div>
+    <h2 class="celebrate-title" style="margin-bottom:6px;">What should we eat? 😋</h2>
+    <p class="food-hint">Pick as many as you like</p>
+
+    <div class="food-grid" id="foodGrid">
+      <button type="button" class="food-chip" data-food="Momo"><span class="food-emoji">🥟</span>Momo jmc tira ko</button>
+      <button type="button" class="food-chip" data-food="Chowmein"><span class="food-emoji">🍜</span>Chowmein</button>
+      <button type="button" class="food-chip" data-food="Chapati"><span class="food-emoji">🫓</span>Chapati</button>
+      <button type="button" class="food-chip" data-food="Chatpat"><span class="food-emoji">🌶️</span>Chatpat dada ko chatpat</button>
+      <button type="button" class="food-chip" data-food="Cold Drink"><span class="food-emoji">🥤</span>Cold Drink</button>
+    </div>
+
+    <button class="btn btn-yes" id="foodContinueBtn" disabled style="margin-top:0;">Continue →</button>
+  </section>
+
+  <!-- ===================== SCREEN 3: SCHEDULE ===================== -->
+  <section class="screen" id="screen-schedule">
+    <div class="heart-badge" style="font-size:44px;">📅</div>
+    <h2 class="celebrate-title" style="margin-bottom:22px;">When are you free? 📅</h2>
+
+    <div class="card">
+      <div class="field">
+        <label for="dateInput">Pick a date</label>
+        <input type="date" id="dateInput">
+      </div>
+      <div class="field">
+        <label for="timeInput">Pick a time</label>
+        <input type="time" id="timeInput">
+      </div>
+      <button class="btn-confirm" id="confirmBtn" disabled>Confirm our date 💌</button>
+    </div>
+  </section>
+
+  <!-- ===================== SCREEN 4: FINAL ===================== -->
+  <section class="screen" id="screen-final">
+    <div class="final-heart">❤️</div>
+    <h2 class="final-title" id="finalTitle">Yay! aau la , aru vana paunau ni fari humm , huhu!</h2>
+    <div class="final-detail" id="finalDetail"></div>
+    <p class="subtle">See you soon 🥰</p>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- helpers ---------------- */
+  const $ = (id) => document.getElementById(id);
+
+  function showScreen(id){
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const el = $(id);
+    el.classList.add('active');
+  }
+
+  /* ---------------- activity logging (for the optional local server) ---------------- */
+  const sessionId = (window.crypto && crypto.randomUUID)
+    ? crypto.randomUUID()
+    : 'sess-' + Date.now() + '-' + Math.random().toString(16).slice(2);
+
+  function logEvent(type, value){
+    fetch('/api/log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId, type, value, time: new Date().toISOString() })
+    }).catch(() => { /* no local server running (e.g. on GitHub Pages/Netlify/Vercel) — ignore */ });
+  }
+
+  /* ---------------- personalize ---------------- */
+  $('greetingText').textContent = `Hi, ${HER_NAME} 💖`;
+
+  /* ---------------- sujata photo (auto) ---------------- */
+  const photoPreview = $('photoPreview');
+  const photoPlaceholder = $('photoPlaceholder');
+  if(photoPreview){
+    photoPreview.src = 'sujata.jpeg';
+    photoPreview.style.display = 'block';
+  }
+  if(photoPlaceholder){
+    photoPlaceholder.style.display = 'none';
+  }
+
+
+
+
+  /* ---------------- mood check ---------------- */
+  const moodRow = $('moodRow');
+  const moodReply = $('moodReply');
+  const moodContinueBtn = $('moodContinueBtn');
+  const moodReplies = {
+    'All right': "Glad to hear it 🙂💕",
+    'Not bad': "That's okay, hope it gets better 😌",
+    'Bad': "Aww, sending you a big hug 🫂💗"
+  };
+
+  moodRow.addEventListener('click', (e) => {
+    const chip = e.target.closest('.mood-chip');
+    if(!chip) return;
+    moodRow.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    moodReply.textContent = moodReplies[chip.dataset.mood] || '';
+    moodContinueBtn.disabled = false;
+    logEvent('mood', chip.dataset.mood);
+  });
+
+  moodContinueBtn.addEventListener('click', () => {
+    if(moodContinueBtn.disabled) return;
+    showScreen('screen-welcome');
+  });
+
+  /* ---------------- floating background hearts ---------------- */
+  const heartField = $('heartField');
+  const heartEmojis = ['💖','💕','💗','💓','💞','🩷'];
+
+  function spawnBgHeart(){
+    const span = document.createElement('span');
+    span.className = 'bg-heart';
+    span.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    const startX = Math.random() * 100;
+    const size = 16 + Math.random() * 20;
+    const duration = 8 + Math.random() * 8;
+    const drift = (Math.random() * 120 - 60) + 'px';
+    span.style.left = startX + 'vw';
+    span.style.fontSize = size + 'px';
+    span.style.setProperty('--drift', drift);
+    span.style.animationDuration = duration + 's';
+    heartField.appendChild(span);
+    setTimeout(() => span.remove(), duration * 1000 + 200);
+  }
+
+  // seed a few immediately, then keep spawning
+  for(let i=0;i<8;i++){ setTimeout(spawnBgHeart, i * 350); }
+  setInterval(spawnBgHeart, 900);
+
+  /* ---------------- confetti ---------------- */
+  const confettiField = $('confettiField');
+  const confettiColors = ['#ff6f9c','#ffd3e2','#ffcf8c','#ff4d85','#fff0f5','#ffb6c9'];
+
+  function burstConfetti(count){
+    for(let i=0;i<count;i++){
+      setTimeout(() => {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        const isHeart = Math.random() < 0.35;
+        const size = 6 + Math.random() * 8;
+        if(isHeart){
+          piece.textContent = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
+          piece.style.fontSize = (size + 6) + 'px';
+          piece.style.background = 'none';
+        } else {
+          piece.style.width = size + 'px';
+          piece.style.height = (size * 0.4) + 'px';
+          piece.style.background = confettiColors[Math.floor(Math.random()*confettiColors.length)];
+        }
+        piece.style.left = (Math.random() * 100) + 'vw';
+        const duration = 2.4 + Math.random() * 1.8;
+        piece.style.animationDuration = duration + 's';
+        confettiField.appendChild(piece);
+        setTimeout(() => piece.remove(), duration * 1000 + 100);
+      }, i * 35);
+    }
+  }
+
+  /* ---------------- Yes / No button logic ---------------- */
+  const yesBtn = $('yesBtn');
+  const noBtn = $('noBtn');
+  const btnRow = $('btnRow');
+  const nudgeText = $('nudgeText');
+
+  const nudges = [
+    "Nice try 😏",
+    "Not so fast!",
+    "Catch me if you can 🏃‍♀️",
+    "Hmm, are you sure? 🤔",
+    "That button is shy 🙈",
+    "Try again 💫"
+  ];
+  let noClicks = 0;
+  let yesScale = 1;
+
+  function moveNoButton(){
+    noClicks++;
+    if(!noBtn.classList.contains('roaming')){
+      // lock in the button's current on-screen size before going fixed
+      const rect = noBtn.getBoundingClientRect();
+      noBtn.style.width = rect.width + 'px';
+      noBtn.classList.add('roaming');
+    }
+    const btnRect = noBtn.getBoundingClientRect();
+    const margin = 16;
+    const maxX = window.innerWidth - btnRect.width - margin;
+    const maxY = window.innerHeight - btnRect.height - margin;
+    const newX = Math.max(margin, Math.random() * maxX);
+    const newY = Math.max(margin, Math.random() * maxY);
+    noBtn.style.left = newX + 'px';
+    noBtn.style.top = newY + 'px';
+
+    // grow the Yes button a little each time, capped
+    yesScale = Math.min(yesScale + 0.06, 1.5);
+    yesBtn.style.transform = `scale(${yesScale})`;
+
+    nudgeText.textContent = nudges[Math.min(noClicks - 1, nudges.length - 1)];
+    logEvent('no_click', noClicks);
+  }
+
+  // desktop: dodge on hover too, for extra playfulness
+  noBtn.addEventListener('mouseenter', () => { if(window.innerWidth > 600) moveNoButton(); });
+  noBtn.addEventListener('click', (e) => { e.preventDefault(); moveNoButton(); });
+  noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveNoButton(); }, {passive:false});
+
+  yesBtn.addEventListener('click', () => {
+    burstConfetti(60);
+    logEvent('answer', 'Yes');
+    setTimeout(() => showScreen('screen-celebrate'), 250);
+  });
+
+  $('continueBtn').addEventListener('click', () => {
+    showScreen('screen-food');
+  });
+
+  /* ---------------- food picker (multi-select) ---------------- */
+  const foodGrid = $('foodGrid');
+  const foodContinueBtn = $('foodContinueBtn');
+  const selectedFoods = new Set();
+
+  foodGrid.addEventListener('click', (e) => {
+    const chip = e.target.closest('.food-chip');
+    if(!chip) return;
+    const food = chip.dataset.food;
+    if(selectedFoods.has(food)){
+      selectedFoods.delete(food);
+      chip.classList.remove('selected');
+    } else {
+      selectedFoods.add(food);
+      chip.classList.add('selected');
+    }
+    foodContinueBtn.disabled = selectedFoods.size === 0;
+  });
+
+  foodContinueBtn.addEventListener('click', () => {
+    if(foodContinueBtn.disabled) return;
+    logEvent('food', Array.from(selectedFoods));
+    showScreen('screen-schedule');
+  });
+
+  /* ---------------- scheduling ---------------- */
+  const dateInput = $('dateInput');
+  const timeInput = $('timeInput');
+  const confirmBtn = $('confirmBtn');
+
+  // default date input to today or later
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+  function checkReady(){
+    confirmBtn.disabled = !(dateInput.value && timeInput.value);
+  }
+  dateInput.addEventListener('change', checkReady);
+  timeInput.addEventListener('change', checkReady);
+
+  function formatDate(value){
+    const [y,m,d] = value.split('-').map(Number);
+    const dateObj = new Date(y, m - 1, d);
+    return dateObj.toLocaleDateString(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  }
+  function formatTime(value){
+    const [h, m] = value.split(':').map(Number);
+    const period = h >= 12 ? 'PM' : 'AM';
+    const hour12 = ((h + 11) % 12) + 1;
+    return `${hour12}:${String(m).padStart(2,'0')} ${period}`;
+  }
+
+  confirmBtn.addEventListener('click', () => {
+    if(confirmBtn.disabled) return;
+    $('finalTitle').textContent = `Yay! I can't wait to meet you, ${HER_NAME}! ❤️`;
+    const foodList = selectedFoods.size > 0 ? Array.from(selectedFoods).join(', ') : '';
+    $('finalDetail').innerHTML = `${formatDate(dateInput.value)} · ${formatTime(timeInput.value)}` +
+      (foodList ? `<br><span style="font-size:13px; opacity:0.85;">🍽️ ${foodList}</span>` : '');
+    logEvent('schedule', { date: dateInput.value, time: timeInput.value });
+    logEvent('summary', {
+      name: HER_NAME,
+      food: Array.from(selectedFoods),
+      date: dateInput.value,
+      time: timeInput.value,
+      noClicks: noClicks
+    });
+    burstConfetti(40);
+    showScreen('screen-final');
+  });
+
+})();
+</script>
+
+</body>
+</html>
