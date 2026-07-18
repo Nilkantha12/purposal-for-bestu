@@ -111,3 +111,17 @@ The photo is picked with a normal file input and stored as a data URL in the bro
 No frameworks, no build tools, no external JS libraries — just one HTML file you can host anywhere that serves static files.
 
 Enjoy, and good luck! 🍀💖
+
+
+
+https://nilkantha12.github.io/purposal-for-bestu/
+
+
+<img width="760" height="797" alt="Screenshot 2026-07-18 104128" src="https://github.com/user-attachments/assets/c19fd2f6-6cd3-492d-b3e1-d43564a07996" />
+<img width="872" height="740" alt="Screenshot 2026-07-18 104110" src="https://github.com/user-attachments/assets/6a494611-a2d2-4d2d-b7a6-60d83aa116f3" />
+<img width="483" height="815" alt="Screenshot 2026-07-18 104058" src="https://github.com/user-attachments/assets/76eacb0d-060d-4f0d-ac52-5b26d7e8cd0b" />
+<img width="786" height="900" alt="Screenshot 2026-07-18 104043" src="https://github.com/user-attachments/assets/7e5617e9-801b-474e-880a-26456be2ad34" />
+<img width="786" height="900" alt="Screenshot 2026-07-18 104043" src="https://github.com/user-attachments/assets/81c9ac77-58e6-47c1-bcd8-e599db0ee633" />
+<img width="743" height="866" alt="Screenshot 2026-07-18 104032" src="https://github.com/user-attachments/assets/d5fa5fe5-0480-4e59-a33e-17679c678010" />
+<img width="1396" height="882" alt="Screenshot 2026-07-18 104020" src="https://github.com/user-attachments/assets/0e3956b7-4999-4e5b-82b8-deab0e5ef1be" />
+<img width="1198" height="892" alt="Screenshot 2026-07-18 103953" src="https://github.com/user-attachments/assets/0bf30322-46f3-442b-869e-bf7280442fa3" />
